@@ -13,6 +13,7 @@ public class General extends GeneralException {
      * Construtor para criar uma nova instância de uma excepção genérica sem mensagem detalhada
      */
     public General() {
+        super();
     }
 
     /**
