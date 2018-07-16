@@ -20,8 +20,9 @@ public class ClassificationManagement extends ListManagement implements Classifi
     }
 
     /**
-     * Método responsável por retornar o número de elementos existentes da classificação
-     * 
+     * Método responsável por retornar o número de elementos existentes da
+     * classificação
+     *
      * @return o número de posições não nulas
      */
     @Override
@@ -30,7 +31,8 @@ public class ClassificationManagement extends ListManagement implements Classifi
     }
 
     /**
-     * Método responsável por aumentar o número de elementos existentes na classificação
+     * Método responsável por aumentar o número de elementos existentes na
+     * classificação
      */
     @Override
     public void increaseSize() {
@@ -42,10 +44,11 @@ public class ClassificationManagement extends ListManagement implements Classifi
     }
 
     /**
-     * Método responsável por diminuir o número de elementos existentes na classificação
+     * Método responsável por diminuir o número de elementos existentes na
+     * classificação
      */
     @Override
-    public void decreaseSize() { 
+    public void decreaseSize() {
         Object[] obj = new Object[this.objects.length - 1];
         for (int i = 0; i < obj.length; i++) {
             obj[i] = this.objects[i];

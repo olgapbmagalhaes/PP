@@ -1,7 +1,6 @@
 /**
  * Nome: Olga Patrícia Barbosa Magalhães Número: 8130149 Turma: T3
  */
-
 package Classes;
 
 import game.Contracts.PilotContract;
@@ -12,17 +11,16 @@ public class Pilot implements PilotContract {
     private String name;
     private int id;
     private KeyCode keyUp, keyDown, keyLeft, keyRight;
-    
-    
-    
+
     /**
-     * 
-     * @param name
-     * @param id
-     * @param keyUp
-     * @param keyDown
-     * @param keyLeft
-     * @param keyRight 
+     * Método construtor para inicializar um piloto
+     *
+     * @param name - o nome do piloto
+     * @param id - o id do piloto
+     * @param keyUp - a tecla de aceleração
+     * @param keyDown - a tecla de travagem
+     * @param keyLeft - a tecla de viragem á esquerda
+     * @param keyRight - a tecla de viragem á direita
      */
     public Pilot(String name, int id, KeyCode keyUp, KeyCode keyDown, KeyCode keyLeft, KeyCode keyRight) {
         this.name = name;
@@ -33,11 +31,13 @@ public class Pilot implements PilotContract {
         this.keyRight = keyRight;
     }
 
+    /**
+     * Método construtor para inicializar um piloto
+     */
     Pilot() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
-    
     /**
      * Método responsável por retornar o nome do piloto
      *

@@ -22,7 +22,7 @@ public class Vehicle extends VehicleAbstract {
     private double[] bounds;
 
     /**
-     * Construtor para inicializar um veículo
+     * Método construtor para inicializar um veículo
      *
      * @param name - o nome do veículo
      */
@@ -31,37 +31,47 @@ public class Vehicle extends VehicleAbstract {
     }
 
     /**
+     * Método responsável por converter um array do tipo json num array do tipo
+     * double
      *
-     * @param string
-     * @return
-     * @throws IOException
+     * @param json -
+     * @return o array do tipo double
+     */
+    public double[] getJSONtoDouble(JSONArray json) {
+        double[] db = new double[json.size()];
+        for (int i = 0; i < json.size(); i++) {
+            db[i] = (double) json.get(i);
+        }
+        return db;
+    }
+
+    /**
+     * Método responsável por mapear os limites do veículo
+     *
+     * @param string - o caminho para o ficheiro que contém os limites do
+     * veículo
+     * @return o sucesso ou insucesso da operação
+     * @throws IOException - a exceção genérica
      */
     @Override
     public boolean mappingBounds(String string) throws IOException {
-       try {
+        try {
             FileReader reader = new FileReader(string);
             JSONParser jsonparser = new JSONParser();
             JSONObject jsonobject = (JSONObject) jsonparser.parse(reader);
-            JSONArray bound = (JSONArray) jsonobject.get("Bounds");
-            this.setBounds((getArrayData(bound)));
             this.type = (String) jsonobject.get("Type");
             this.model = (String) jsonobject.get("Model");
             this.speedVehicle = (double) jsonobject.get("Speed");
-            this.directionVehicle = ((int) ((long)jsonobject.get("Direction")));
+            this.directionVehicle = ((int) ((long) jsonobject.get("Direction")));
             this.breakPadVehicle = (double) jsonobject.get("Break");
+            JSONArray bound = (JSONArray) jsonobject.get("Bounds");
+            this.setBounds((getJSONtoDouble(bound)));
+
         } catch (ParseException ex) {
             return false;
         }
-        return true; 
+        return true;
 
-    }
-    
-      public double[] getArrayData(JSONArray a){
-        double[] aux = new double[a.size()];
-        for(int i=0; i<a.size(); i++){
-            aux[i] = (double) a.get(i);
-        }
-        return aux;
     }
 
     /**
@@ -208,16 +218,19 @@ public class Vehicle extends VehicleAbstract {
         return this.bounds;
     }
 
+    /**
+     * Método responsável por especificar os limites do veículo
+     *
+     * @param bounds - os limites do veiculo
+     */
     public void setBounds(double[] bounds) {
         this.bounds = bounds;
     }
-    
-    
-
 
     /**
-     * 
-     * @return 
+     * Método que retorna uma string com toda a informação relativa ao veiculo
+     *
+     * @return uma string com toda a informação do veiculo
      */
     @Override
     public String toString() {

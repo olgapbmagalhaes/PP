@@ -39,6 +39,21 @@ public class Level implements LevelContract {
     }
 
     /**
+     * Método responsável por converter um array do tipo json num array do tipo
+     * double
+     *
+     * @param json -
+     * @return o array do tipo double
+     */
+    public double[] getJSONtoDouble(JSONArray json) {
+        double[] db = new double[json.size()];
+        for (int i = 0; i < json.size(); i++) {
+            db[i] = (double) json.get(i);
+        }
+        return db;
+    }
+
+    /**
      * Método responsável por carregar os limites do nível a partir de ficheiro
      *
      * @param string - ficheiro onde estão definidos os limites do nível
@@ -53,27 +68,19 @@ public class Level implements LevelContract {
             FileReader reader = new FileReader(string);
             JSONParser jsonparser = new JSONParser();
             JSONObject jsonobject = (JSONObject) jsonparser.parse(reader);
-            JSONArray bound1 = (JSONArray) jsonobject.get("UpperBound");
-            this.setLowerBounds(getArrayData(bound1));
-            JSONArray bound2 = (JSONArray) jsonobject.get("LowerBound");
-            this.setUpperBounds(getArrayData(bound2));
-            JSONArray bound3 = (JSONArray) jsonobject.get("Checkpoints");
-            this.setCheckpoints(getArrayData(bound3));
-            JSONArray bound4 = (JSONArray) jsonobject.get("StartCar");
-            this.setStartCar(getArrayData(bound4));
+            JSONArray lowerBound = (JSONArray) jsonobject.get("LowerBound");
+            this.setUpperBounds(getJSONtoDouble(lowerBound));
+            JSONArray upperBound = (JSONArray) jsonobject.get("UpperBound");
+            this.setLowerBounds(getJSONtoDouble(upperBound));
+            JSONArray check = (JSONArray) jsonobject.get("Checkpoints");
+            this.setCheckpoints(getJSONtoDouble(check));
+            JSONArray initialCar = (JSONArray) jsonobject.get("StartCar");
+            this.setStartCar(getJSONtoDouble(initialCar));
         } catch (ParseException ex) {
             return false;
         }
         return true;
 
-    }
-
-    public double[] getArrayData(JSONArray a) {
-        double[] aux = new double[a.size()];
-        for (int i = 0; i < a.size(); i++) {
-            aux[i] = (double) a.get(i);
-        }
-        return aux;
     }
 
     /**
@@ -136,26 +143,47 @@ public class Level implements LevelContract {
         return this.startCar;
     }
 
+    /**
+     * Método responsável por especiicar os limites inferiores do nível
+     *
+     * @param lowerBounds - os limites inferiores do nivel
+     */
     public void setLowerBounds(double[] lowerBounds) {
         this.lowerBounds = lowerBounds;
     }
 
+    /**
+     * Método responsável por especificar os limites superiores do nível
+     *
+     * @param upperBounds - os limites superiores do nivel
+     */
     public void setUpperBounds(double[] upperBounds) {
         this.upperBounds = upperBounds;
     }
 
+    /**
+     * Método responsável por especificar a localização dos checkpoints do nível
+     *
+     * @param checkPoints - a localização dos checkpoints do nivel
+     */
     public void setCheckpoints(double[] checkPoints) {
         this.checkPoints = checkPoints;
     }
 
+    /**
+     * Método reponsável por especificar a localização inicial do veículo
+     *
+     * @param startCar - um array com a localização inicial do veículo
+     */
     public void setStartCar(double[] startCar) {
         this.startCar = startCar;
     }
-    
-    
-    
-    
 
+    /**
+     * Método que retorna uma string com toda a informação relativa ao nivel
+     *
+     * @return uma string com toda a informação relativa ao nivel
+     */
     @Override
     public String toString() {
         return "Level{"

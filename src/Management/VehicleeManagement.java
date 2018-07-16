@@ -4,6 +4,7 @@
 package Management;
 
 import game.classes.VehicleManagement;
+import java.util.Arrays;
 
 public class VehicleeManagement extends VehicleManagement {
 
@@ -15,10 +16,6 @@ public class VehicleeManagement extends VehicleManagement {
         this.objects = new Object[DEFAULT_SIZE];
         this.tam = 0;
     }
-    
-    
-    
-    
 
     /**
      * Método responsável por retornar um objeto existente numa determinada
@@ -61,11 +58,20 @@ public class VehicleeManagement extends VehicleManagement {
         return false;
     }
 
+    /**
+     * Método que retorna uma string com toda a informação da classe
+     * VehicleManagement
+     *
+     * @return uma string com toda a informação relativa á classe
+     * VehicleManagement
+     */
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "VehicleeManagement{"
+                + "DEFAULT_SIZE=" + DEFAULT_SIZE
+                + ", objects=" + Arrays.toString(objects)
+                + ", tam=" + tam
+                + '}';
     }
-
-
 
 }

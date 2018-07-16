@@ -18,6 +18,13 @@ public class Classification implements ClassificationContract {
     
     
     /**
+     * Método construtor para inicializar um piloto
+     */
+    public Classification() {
+    }
+
+
+    /**
      * Método responsável por retornar o nível da classificação
      *
      * @return o nível da classificação
@@ -106,26 +113,24 @@ public class Classification implements ClassificationContract {
     public double getBestLap() {
         return this.bestLap;
     }
-    
+
     /**
      * Método responsável por especificar o tempo da melhor volta
-     * 
+     *
      * @param bestLap - o tempo da melhor volta
      */
-
     public void setBestLap(double bestLap) {
         this.bestLap = bestLap;
     }
-    
-    
 
     /**
-     * 
-     * @param d 
+     * Método responsável por adicionar o tempo de uma volta
+     *
+     * @param d - o tempo de uma volta
      */
     @Override
     public void addLap(double d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     /**
@@ -162,7 +167,8 @@ public class Classification implements ClassificationContract {
     }
 
     /**
-     * Método que retorna uma string com toda a informação relativa á classificação
+     * Método que retorna uma string com toda a informação relativa á
+     * classificação
      *
      * @return uma string com toda a informação á classificação
      */

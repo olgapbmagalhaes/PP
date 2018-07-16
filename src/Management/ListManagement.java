@@ -85,5 +85,4 @@ public class ListManagement implements ListManagementContract {
         return -1;
     }
 
-    
 }
